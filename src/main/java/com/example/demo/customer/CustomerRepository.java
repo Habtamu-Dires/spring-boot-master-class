@@ -3,8 +3,6 @@ package com.example.demo.customer;
 import java.util.Collections;
 import java.util.List;
 
-import org.springframework.context.annotation.Primary;
-import org.springframework.stereotype.Repository;
 
 /*DAO layer */ 
 
@@ -15,7 +13,7 @@ public class CustomerRepository implements CustomerRepo{
     public List<Customer> getCustomers(){
         //to do connect with a real db
         return Collections.singletonList(
-            new Customer(1L, "TODO. Implement real db")
+            new Customer(1L, "TODO. Implement real db","todo")
         );
     }
 }
