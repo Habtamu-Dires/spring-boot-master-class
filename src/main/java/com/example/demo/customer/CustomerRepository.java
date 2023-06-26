@@ -13,7 +13,8 @@ public class CustomerRepository implements CustomerRepo{
     public List<Customer> getCustomers(){
         //to do connect with a real db
         return Collections.singletonList(
-            new Customer(1L, "TODO. Implement real db","todo")
+            new Customer(1L, "TODO. Implement real db","todo",
+                "email@gmail.com")
         );
     }
 }

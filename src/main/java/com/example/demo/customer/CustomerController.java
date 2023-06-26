@@ -2,6 +2,8 @@ package com.example.demo.customer;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,7 +30,7 @@ public class CustomerController {
 	} 
 
 	@PostMapping
-	void createNewCustomer(@RequestBody Customer customer){
+	void createNewCustomer(@Valid @RequestBody Customer customer){
 		System.out.println("POST REQUEST ...");
 		System.out.println(customer);
 	}

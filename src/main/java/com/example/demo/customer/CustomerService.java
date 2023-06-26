@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.exception.NotFoundException;
+
 /*business logic layer */
 @Service
 public class CustomerService {
@@ -25,7 +27,8 @@ public class CustomerService {
                 .filter(customer -> customer.getId().equals(id))
                 .findFirst()
                 .orElseThrow(
-                    () -> new IllegalStateException("customer not found")
+                    () -> new NotFoundException(
+                        "customer with id: " + id +   " not found")
                 );
     }
 }
