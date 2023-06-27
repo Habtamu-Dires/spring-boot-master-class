@@ -2,7 +2,8 @@ package com.example.demo.customer;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.exception.NotFoundException;
@@ -11,6 +12,11 @@ import com.example.demo.exception.NotFoundException;
 @Service
 public class CustomerService {
 
+    //logging is simpl just pass the class, call it inside a class as show below
+    private final static Logger LOGGER = LoggerFactory.getLogger(
+        CustomerService.class
+    );
+
     private final CustomerRepository customerRepository;
 
     public CustomerService(CustomerRepository customerRepository){
@@ -18,6 +24,7 @@ public class CustomerService {
     }
 
     List<Customer> getCustomers(){
+        LOGGER.info("getCustoemr was called");
 		return customerRepository.findAll();
 	}   
     
@@ -25,8 +32,16 @@ public class CustomerService {
         return customerRepository
                 .findById(id)
                 .orElseThrow(
-                    () -> new NotFoundException(
-                        "customer with id: " + id +   " not found")
+
+                    () -> {
+                        NotFoundException notFoundException = new NotFoundException(
+                        "customer with id: " + id +   " not found");
+                        
+                        LOGGER.error("error in getCustoemer {}", id, 
+                               notFoundException.toString()); 
+
+                        return notFoundException;
+                    }
                 );
     }
 }
