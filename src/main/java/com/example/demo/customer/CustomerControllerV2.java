@@ -16,17 +16,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.exception.ApiRequestException;
 
+import lombok.AllArgsConstructor;
+
 /*rest controller */
 @RequestMapping(path = "api/v2/customers")
 @RestController
 @Deprecated
+@AllArgsConstructor
 public class CustomerControllerV2 {
 
 	private final CustomerService customerService;
-
-	public CustomerControllerV2(CustomerService customerService){
-		this.customerService = customerService;
-	}
 
     @GetMapping   //(value = "all")
 	List<Customer> getCustomers(){

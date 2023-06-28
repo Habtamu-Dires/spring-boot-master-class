@@ -8,23 +8,19 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.exception.NotFoundException;
 
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
 /*business logic layer */
 @Service
+@AllArgsConstructor
+@Slf4j
 public class CustomerService {
-
-    //logging is simpl just pass the class, call it inside a class as show below
-    private final static Logger LOGGER = LoggerFactory.getLogger(
-        CustomerService.class
-    );
 
     private final CustomerRepository customerRepository;
 
-    public CustomerService(CustomerRepository customerRepository){
-        this.customerRepository = customerRepository;
-    }
-
     List<Customer> getCustomers(){
-        LOGGER.info("getCustoemr was called");
+        log.info("getCustoemr was called");
 		return customerRepository.findAll();
 	}   
     
@@ -37,7 +33,7 @@ public class CustomerService {
                         NotFoundException notFoundException = new NotFoundException(
                         "customer with id: " + id +   " not found");
                         
-                        LOGGER.error("error in getCustoemer {}", id, 
+                        log.error("error in getCustoemer {}", id, 
                                notFoundException.toString()); 
 
                         return notFoundException;
