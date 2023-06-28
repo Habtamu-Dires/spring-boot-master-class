@@ -4,13 +4,17 @@ import java.time.ZonedDateTime;
 
 import org.springframework.http.HttpStatus;
 
-import lombok.Data;
+/*recod give's us -private final field, getter for each field,
+ *                -public constructur, toString, Equals and Hashs
+ *  -the purpose of record is to achive immutability 
+ */
 
-@Data
-public class ApiException {
-    private final String message;
-    private final Throwable throwable;
-    private final HttpStatus httpStatus;
-    private final ZonedDateTime zonedDateTime;
+public record ApiException(String message, 
+                            Throwable throwable,
+                            HttpStatus httpStatus, 
+                            ZonedDateTime zonedDateTime) {
+    
 
 }
+
+
